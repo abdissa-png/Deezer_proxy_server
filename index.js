@@ -24,6 +24,9 @@ app.use('/api', createProxyMiddleware({
     pathRewrite: {
         [`^/api`]: '',
     },
+    onProxyRes: function (proxyRes, req, res) {
+        proxyRes.headers['Access-Control-Allow-Origin'] = '*';
+    }
  }));
  app.use(function (err, req, res, next) {
     console.error(err.stack);
