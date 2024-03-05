@@ -12,7 +12,7 @@ const corsOptions = {
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE', // Specify allowed methods
     allowedHeaders: 'Content-Type,Authorization' // Specify allowed headers
   };
-app.use("*",cors());
+app.use("*",cors(corsOptions));
 // Logging
 app.use(morgan('dev'));
 // Configuration
