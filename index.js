@@ -24,7 +24,7 @@ app.use('/api', createProxyMiddleware({
  }));
 
  // Start the Proxy
-app.listen(PORT, HOST, () => {
+app.listen(PORT, () => {
     console.log(`Starting Proxy at Port:${PORT}`);
  });
 
