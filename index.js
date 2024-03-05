@@ -6,17 +6,19 @@ const { createProxyMiddleware } = require('http-proxy-middleware');
 const dotenv = require("dotenv");
 const app = express();
 //cors
-dotenv.config();
 const corsOptions = {
     origin: '', // Specify the allowed origin
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE', // Specify allowed methods
     allowedHeaders: 'Content-Type,Authorization' // Specify allowed headers
-  };
+};
 app.use("/api",cors(corsOptions));
 // Logging
 app.use(morgan('dev'));
 // Configuration
+dotenv.config();
 const PORT = process.env.APP_PORT || 3000;
+const origin=process.env.origin
+console.log(origin)
 console.log("PORT: ",PORT)
 const API_SERVICE_URL = "https://groove-it-app.ew.r.appspot.com/https://api.deezer.com";
 
@@ -29,7 +31,7 @@ app.use('/api', createProxyMiddleware({
     },
     onProxyReq: (proxyReq, req, res) => {
         // Set the Origin header to the desired value
-        proxyReq.setHeader('Origin', 'https://groov.netlify.app');
+        proxyReq.setHeader('Origin', origin);
     },
     onProxyRes: function (proxyRes, req, res) {
         proxyRes.headers['Access-Control-Allow-Origin'] = '*';
