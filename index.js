@@ -16,7 +16,7 @@ app.use("*",cors(corsOptions));
 // Logging
 app.use(morgan('dev'));
 // Configuration
-const PORT = process.env.PORT;
+const PORT = process.env.APP_PORT;
 console.log("PORT: ",PORT)
 const API_SERVICE_URL = "https://api.deezer.com";
 
