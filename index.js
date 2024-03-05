@@ -7,15 +7,17 @@ const dotenv = require("dotenv");
 const app = express();
 //cors
 dotenv.config();
-app.use(cors({
-    origin: 'https://melodify11.netlify.app',
-  optionsSuccessStatus: 200
-}));
+const corsOptions = {
+    origin: 'https://melodify11.netlify.app', // Specify the allowed origin
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE', // Specify allowed methods
+    allowedHeaders: 'Content-Type,Authorization' // Specify allowed headers
+  };
+app.use("*",cors());
 // Logging
 app.use(morgan('dev'));
 // Configuration
 const PORT = process.env.PORT;
-const API_SERVICE_URL = "https://cors-anywhere.herokuapp.com/https://api.deezer.com";
+const API_SERVICE_URL = "https://api.deezer.com";
 
 // Proxy endpoints
 app.use('/api', createProxyMiddleware({
@@ -24,9 +26,6 @@ app.use('/api', createProxyMiddleware({
     pathRewrite: {
         [`^/api`]: '',
     },
-    onProxyRes: function (proxyRes, req, res) {
-        proxyRes.headers['Access-Control-Allow-Origin'] = '*';
-    }
  }));
  app.use(function (err, req, res, next) {
     console.error(err.stack);
