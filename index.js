@@ -25,7 +25,10 @@ app.use('/api', createProxyMiddleware({
         [`^/api`]: '',
     },
  }));
-
+ app.use(function (err, req, res, next) {
+    console.error(err.stack);
+    res.status(500).send('Something went wrong!');
+});
  // Start the Proxy
 app.listen(PORT, () => {
     console.log(`Starting Proxy at Port:${PORT}`);
