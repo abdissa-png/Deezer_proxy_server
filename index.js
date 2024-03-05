@@ -7,7 +7,10 @@ const dotenv = require("dotenv");
 const app = express();
 //cors
 dotenv.config();
-app.use(cors());
+app.use(cors({
+    origin: 'https://melodify11.netlify.app',
+  optionsSuccessStatus: 200
+}));
 // Logging
 app.use(morgan('dev'));
 // Configuration
