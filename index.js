@@ -8,7 +8,7 @@ const app = express();
 //cors
 dotenv.config();
 const corsOptions = {
-    origin: 'https://melodify11.netlify.app', // Specify the allowed origin
+    origin: '*', // Specify the allowed origin
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE', // Specify allowed methods
     allowedHeaders: 'Content-Type,Authorization' // Specify allowed headers
   };
