@@ -15,7 +15,7 @@ app.use(cors({
 app.use(morgan('dev'));
 // Configuration
 const PORT = process.env.PORT;
-const API_SERVICE_URL = "https://api.deezer.com";
+const API_SERVICE_URL = "https://cors-anywhere.herokuapp.com/https://api.deezer.com";
 
 // Proxy endpoints
 app.use('/api', createProxyMiddleware({
