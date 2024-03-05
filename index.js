@@ -17,7 +17,10 @@ app.use("*",cors(corsOptions));
 app.use(morgan('dev'));
 // Configuration
 const PORT = process.env.PORT;
-const API_SERVICE_URL = "https://api.deezer.com";
+const X_RapidAPI_key=process.env.X_RapidAPI_key;
+const X_RapidAPI_Host=process.env.X_RapidAPI_Host;
+
+const API_SERVICE_URL = "https://deezerdevs-deezer.p.rapidapi.com";
 
 // Proxy endpoints
 app.use('/api', createProxyMiddleware({
@@ -26,6 +29,11 @@ app.use('/api', createProxyMiddleware({
     pathRewrite: {
         [`^/api`]: '',
     },
+    onProxyReq: (proxyReq, req, res) => {
+        // Add the custom headers
+        proxyReq.setHeader('X-RapidAPI-Key', X_RapidAPI_key);
+        proxyReq.setHeader('X-RapidAPI-Host', X_RapidAPI_Host);
+    }
  }));
  app.use(function (err, req, res, next) {
     console.error(err.stack);
