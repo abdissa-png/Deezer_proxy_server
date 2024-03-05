@@ -32,7 +32,7 @@ app.use('/api', createProxyMiddleware({
     }
  }));
  app.use(function (err, req, res, next) {
-    console.error(err.stack);
+    console.log(err);
     res.status(500).send('Something went wrong!');
 });
  // Start the Proxy
