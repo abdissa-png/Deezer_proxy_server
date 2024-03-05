@@ -18,7 +18,7 @@ app.use(morgan('dev'));
 // Configuration
 const PORT = process.env.APP_PORT || 3000;
 console.log("PORT: ",PORT)
-const API_SERVICE_URL = "https://api.deezer.com";
+const API_SERVICE_URL = "https://groove-it-app.ew.r.appspot.com/https://api.deezer.com";
 
 // Proxy endpoints
 app.use('/api', createProxyMiddleware({
