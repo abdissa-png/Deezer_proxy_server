@@ -27,6 +27,10 @@ app.use('/api', createProxyMiddleware({
     pathRewrite: {
         [`^/api`]: '',
     },
+    onProxyReq: (proxyReq, req, res) => {
+        // Set the Origin header to the desired value
+        proxyReq.setHeader('Origin', 'https://groov.netlify.app');
+    },
     onProxyRes: function (proxyRes, req, res) {
         proxyRes.headers['Access-Control-Allow-Origin'] = '*';
     }
